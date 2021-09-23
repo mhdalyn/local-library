@@ -28,7 +28,7 @@ function getMostCommonGenres(books) {
     return acc;
   }, {})
   let countedGenres = Object.values(byGenres);
-  const sortedGenres = countedGenres.sort((genreA, genreB) => genreA.count < genreB.count ? 1 : -1)
+  const sortedGenres = countedGenres.sort((genreA, genreB) => sortCompare(genreA, genreB))
   return sortedGenres.slice(0,5);
 }
 
@@ -50,11 +50,11 @@ function getMostPopularAuthors(books, authors) {
     return {name: (`${author.name.first} ${author.name.last}`), count: count};
   })
   // mostPopularAuthors = sort authors by popularity
-  const mostPopularAuthors = authorPopularity.sort((author1,author2) => author1.count < author2.count ? 1 : -1)
+  const mostPopularAuthors = authorPopularity.sort((author1,author2) => sortCompare(author1,author2))
   return mostPopularAuthors.slice(0,5);
 }
 
-// let sortCompare = (object1,object2) => object1.count < object2.count ? 1 : -1;
+let sortCompare = (object1,objectB) => object1.count < objectB.count ? 1 : -1;
 
 module.exports = {
   getTotalBooksCount,
